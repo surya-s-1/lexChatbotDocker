@@ -29,23 +29,23 @@ export default function Conversation() {
           }
         })
 
-        const data = await response.json()
+        const data = await response?.json()
     
-        if (data.conversation.state === "Close") {
+        if (data?.conversation?.state === "Close") {
           setClosed(true)
         } else {
           setClosed(false)
         }
 
-        const newMessages = data.conversation.messages.filter(message => !messageIds.current.has(message._id))
+        const newMessages = data?.conversation?.messages?.filter(message => !messageIds.current.has(message._id))
 
         let cumulativeCharacters = 0;
 
-        for (let i = 0; i < newMessages.length; i++) {
+        for (let i = 0; i < newMessages?.length; i++) {
           
           setTimeout(()=>{
               setMessages(prevMsgs => [...prevMsgs, newMessages[i]])
-            }, data.conversation.state === "Close" ? 0 : cumulativeCharacters * 2000 / 75)
+            }, data?.conversation?.state === "Close" ? 0 : cumulativeCharacters * 2000 / 75)
 
           cumulativeCharacters += newMessages[i].content.length
 

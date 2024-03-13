@@ -26,6 +26,7 @@ export async function Bot(sessionId, userInput) {
 
     try {
         const response = await client.send(command)
+        console.log(response)
         return response
     } catch (error) {
         console.log(error)

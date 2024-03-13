@@ -26,9 +26,9 @@ export default function Home() {
                         throw new Error(`Error fetching conversations: ${response.status}`);
                     }
     
-                    const data = await response.json()
+                    const data = await response?.json()
                     
-                    setConversations(data.conversation)
+                    setConversations(data?.conversation)
                 } else {
                     navigate('/login')
                 }
@@ -57,10 +57,10 @@ export default function Home() {
                     throw new Error(`Error creating conversation: ${response.status}`);
                 }
     
-                const data = await response.json()
+                const data = await response?.json()
                 
                 setConversations([...conversations, data?.conversation])
-                navigate(`/conversations/${data.conversation._id}`)
+                navigate(`/conversations/${data?.conversation?._id}`)
             } else {
                 navigate('/login')
             }

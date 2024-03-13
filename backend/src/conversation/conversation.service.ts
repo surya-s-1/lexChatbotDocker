@@ -40,7 +40,7 @@ export class ConversationService {
         const sanitizedInputMsg = sanitizeMsgInput(content)
         const botResponse = await Bot(conversation.sessionId, sanitizedInputMsg)
 
-        botResponse.messages?.map(message => {
+        botResponse?.messages?.map(message => {
             const timestampBot = new Date(Date.now())
 
             const sanitizedMsg = sanitizeMsgInput(message['content'])
@@ -49,7 +49,7 @@ export class ConversationService {
             conversation.messages.push(newMessageBot)
         })
 
-        conversation.state = botResponse.sessionState.dialogAction.type==="Close"?"Close":"InProgress"
+        conversation.state = botResponse?.sessionState?.dialogAction?.type==="Close"?"Close":"InProgress"
 
         return conversation.save()
     }
