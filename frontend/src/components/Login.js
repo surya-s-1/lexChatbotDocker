@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { verifyJwt } from "../utilities/verifytoken";
+import { loginAPI } from "../utilities/api";
 
 export default function Login() {
     const navigate = useNavigate()
@@ -13,7 +14,7 @@ export default function Login() {
         e.preventDefault()
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_LOGIN_URL}`, {
+            const response = await fetch(`${loginAPI()}`, {
                 method: 'POST',
                 body: JSON.stringify({email, password}),
                 headers: { 'Content-Type' : 'application/json' }
